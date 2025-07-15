@@ -83,4 +83,4 @@ total_end = time.time()
 elapsed = total_end - total_start
 # print(f"Report Generated in {elapsed:.2f} seconds")
 res = pd.DataFrame(res).T
-# print(res)
+print(res)
