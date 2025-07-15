@@ -3,7 +3,7 @@
 ## Environment Setup
 -- Install UV using pip. "pip install uv"
 -- uv venv .venv
--- uv add pandas numpy seaborn scikit-learn tqdm
+-- uv add pandas numpy seaborn scikit-learn tqdm gdown
 -- added uv.lock and .venv/ in .gitignore
 
 ## Folder Structure
