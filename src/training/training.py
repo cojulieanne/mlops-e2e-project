@@ -87,10 +87,10 @@ def training(train_df):
     elapsed = total_end - total_start
     # print(f"Report Generated in {elapsed:.2f} seconds")
     undersampler = pd.DataFrame(undersampler).T
-    print(undersampler)
+    # print(undersampler)
 
     best_model_name = undersampler['ave_val_recall'].idxmax()
-    print(f"\nBest Model based on Average Validation recall: {best_model_name}")
+    # print(f"\nBest Model based on Average Validation recall: {best_model_name}")
     best_model = models_dict[best_model_name]
 
     best_pipeline = Pipeline([
