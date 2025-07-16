@@ -6,3 +6,5 @@ def preprocess_data():
         lambda x: 1 if x == 0 else 0
     )
     df.to_csv("data/silver/preprocessed_ml2_student_performance.csv", index=False)
+    data_link = "data/silver/preprocessed_ml2_student_performance.csv"
+    return data_link

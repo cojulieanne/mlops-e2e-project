@@ -1,8 +1,8 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split, KFold, StratifiedKFold
 
-def split_data(df):
-    df = pd.read_csv("data/silver/preprocessed_ml2_student_performance.csv")
+def split_data(link):
+    df = pd.read_csv(link)
 
     X, y = df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1), df["Pass/Fail (1=Pass, 0=Fail)"]
 
@@ -19,3 +19,7 @@ def split_data(df):
 
     train_df.to_csv("data/gold/train_ml2_students_data.csv", index=False)
     test_df.to_csv("data/gold/test_ml2_students_data.csv", index=False)
+
+    
+
+    return train_df, test_df

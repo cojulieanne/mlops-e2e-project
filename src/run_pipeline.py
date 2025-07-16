@@ -19,11 +19,11 @@ def main():
     print("Data Splitting Completed.")
 
     print("Training Model...")
-    model = train_model(train_data)
+    model = training(train_data)
     print("Model Training Completed.")
 
     print("Evaluating Model...")
-    evaluate_model(model, test_data)
+    evaluation(train_data, test_data)
     print("Model Evaluation Completed.")
 
     print("Pipeline completed successfully.")
