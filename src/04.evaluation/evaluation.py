@@ -1,40 +1,17 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
-
-import time
-from tqdm import tqdm
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from sklearn.model_selection import train_test_split, KFold, StratifiedKFold
+import pickle
+from imblearn.metrics import sensitivity_score, geometric_mean_score
 from sklearn.metrics import accuracy_score
-
 import warnings
-
 warnings.filterwarnings("ignore")
 
-# metrics
-from imblearn.metrics import sensitivity_score, geometric_mean_score
-
-# resampling methods
-from imblearn.over_sampling import RandomOverSampler, SMOTE, ADASYN
-from imblearn.under_sampling import RandomUnderSampler
-
-# pipeline
-from imblearn.pipeline import Pipeline
 
 test_df = pd.read_csv("data/gold/test_ml2_students_data.csv")
 train_df = pd.read_csv("data/gold/train_ml2_students_data.csv")
 
 
-model = RandomForestClassifier(random_state=143)
-
-pipeline = Pipeline([('RandomUnderSampler',
-                              RandomUnderSampler(random_state=143)),
-                             ('RFClassifier',model)])
+with open('models/model.pkl', 'rb') as f:
+    pipeline = pickle.load(f)
 
 
 X_train, y_train = train_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1), train_df["Pass/Fail (1=Pass, 0=Fail)"]
