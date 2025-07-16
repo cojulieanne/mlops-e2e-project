@@ -37,3 +37,15 @@
 
 ## Model
 --generated model.pkl after training
+
+
+# Project Overview
+-- This ML exercise was done in our ML2 subject. its a basic, direct to the point modelling challenge that was easy to understand. It allows us to check how different resampling
+methods and models perform to predict the minority, in this specific problem the failed students.
+
+# Data Repo
+-- Data used for this project can be accessed here: https://drive.google.com/uc?id=16_IoRl6EUCevWf4_l5orzRLjlnVG-WUd 
+
+# Challenge while doing this homework
+-- This was actually fun and was very interesting for me. This is the first time i realized why we need to save the models (in the notebook setting i dont see the point).
+One challenge for me was fixing the creating the run_pipeline.py since I have to "tahi" my files to have a good flow. Also, i encountered errors in importing the scripts but was able to find the right syntax after 5-10 attempts :)
