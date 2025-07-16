@@ -1,8 +1,8 @@
 from load_data import load_data
-from preprocessing.preprocess_data import preprocess_data
-from feature_engineering.split_data import split_data
-from training.training import train_model
-from evaluation.evaluation import evaluate_model
+from preprocessing import preprocess_data
+from feature_engineering import split_data
+from training import training
+from evaluation import evaluation
 
 def main():
     print("Starting the ML Pipeline...")
