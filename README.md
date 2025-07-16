@@ -13,13 +13,13 @@
 --silver
     preprocessed data. switched the labellings for the target variable
 --gold
-    I am not sure prof what to put here to be honest given that my model is very simple.
+    contains test and train dataset ready for modelling.
 
 ## Models
 -- 01.preprocessing
     added the code here to switch the values of the pass/fail column, then saved the output csv to silver
 -- 02.feature engineering
-    dataset was pretty direct so no need to add feature engineering code here, but i put it to show structure in the models folder
+    contains code for preprocessed data to split into test and train datasets, ready for model usage.
 -- 03.training
     contains training code which was for the test dataset only
 -- 04.evaluation
