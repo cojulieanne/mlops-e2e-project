@@ -5,5 +5,10 @@ src/*/__pycache__
 data/bronze/*
 data/silver/*
 data/gold/*
-reports/
+!data/bronze/.gitkeep
+!data/silver/.gitkeep
+!data/gold/.gitkeep
+reports/*
+!reports/.gitkeep
 models/
+!models/.gitkeep
