@@ -1,4 +1,4 @@
 uv.lock
 .venv/
 .vscode
-src/*/__pycache__
+./src/*/__pycache__
