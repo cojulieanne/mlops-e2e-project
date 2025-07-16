@@ -7,23 +7,23 @@ from evaluation import evaluation
 def main():
     print("Starting the ML Pipeline...")
     print("Loading Data...")
-    raw_data = load_data()
+    load_data.load()
     print("Loading Data Completed.")
 
     print("Preprocessing data...")
-    preprocessed_data = preprocess_data()
+    preprocessed_data = preprocess_data.preprocess_data()
     print("Preprocessing completed.")
 
     print("Splitting Data...")
-    train_data, test_data = split_data(preprocessed_data)
+    train_data, test_data = split_data.split_data(preprocessed_data)
     print("Data Splitting Completed.")
 
     print("Training Model...")
-    model = training(train_data)
+    model = training.training(train_data)
     print("Model Training Completed.")
 
     print("Evaluating Model...")
-    evaluation(train_data, test_data)
+    evaluation.evaluation(train_data, test_data)
     print("Model Evaluation Completed.")
 
     print("Pipeline completed successfully.")
