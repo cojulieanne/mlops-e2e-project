@@ -15,7 +15,7 @@
 --gold
     contains test and train dataset ready for modelling.
 
-## Models
+## Scripts
 -- 01.preprocessing
     added the code here to switch the values of the pass/fail column, then saved the output csv to silver
 -- 02.feature engineering
@@ -34,3 +34,6 @@
 --trailing-whitespace
     This will be useful in tidying up my code since I noticed when revisiting my old notebooks for this homework that I do have a lot
     of unnecessary press of the "Enter" button
+
+## Model
+--generated model.pkl after training
