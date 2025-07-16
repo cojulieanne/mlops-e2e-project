@@ -21,6 +21,11 @@ pipeline.fit(X_train, y_train)
 
 y_pred = pipeline.predict(X_test)
 
-print(f"Test Accuracy: {accuracy_score(y_test, y_pred) * 100:.2f}")
-print(f"Test Recall: {sensitivity_score(y_test, y_pred) * 100:.2f}")
-print(f"Test G-Mean: {geometric_mean_score(y_test, y_pred) * 100:.2f}")
+accuracy = accuracy_score(y_test, y_pred) * 100
+recall = sensitivity_score(y_test, y_pred) * 100
+gmean = geometric_mean_score(y_test, y_pred) * 100
+
+with open('reports/metrics.txt', 'w') as f:
+    f.write(f"Test Accuracy: {accuracy:.2f}%\n")
+    f.write(f"Test Recall: {recall:.2f}%\n")
+    f.write(f"Test G-Mean: {gmean:.2f}%\n")
