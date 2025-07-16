@@ -25,6 +25,7 @@ from imblearn.under_sampling import RandomUnderSampler
 
 # pipeline
 from imblearn.pipeline import Pipeline
+import pickle
 
 df = pd.read_csv("data/gold/train_ml2_students_data.csv")
 
@@ -86,3 +87,17 @@ elapsed = total_end - total_start
 # print(f"Report Generated in {elapsed:.2f} seconds")
 undersampler = pd.DataFrame(undersampler).T
 print(undersampler)
+
+best_model_name = undersampler['ave_val_recall'].idxmax()
+print(f"\nBest Model based on Average Validation recall: {best_model_name}")
+best_model = models_dict[best_model_name]
+
+best_pipeline = Pipeline([
+    ('RandomUnderSampler', RandomUnderSampler(random_state=143)),
+    ('Classifier', best_model)
+])
+
+best_pipeline.fit(X_trainval, y_trainval)
+
+with open(f'models/model.pkl', 'wb') as f:
+    pickle.dump(best_pipeline, f)
