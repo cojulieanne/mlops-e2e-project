@@ -1,4 +1,4 @@
-# 72b86e078843edb3752c88bdd311e512da2f7d46f9f8aef109f4b9f55c54984d_Homework1
+# MLOPS Repository
 
 ## Environment Setup
 -- Install UV using pip. "pip install uv" \n
@@ -71,3 +71,8 @@ methods and models perform to predict the minority, in this specific problem the
 
 -- This was actually fun and was very interesting for me. This is the first time i realized why we need to save the models (in the notebook setting i dont see the point).
 One challenge for me was fixing the creating the run_pipeline.py since I have to "tahi" my files to have a good flow. Also, i encountered errors in importing the scripts but was able to find the right syntax after 5-10 attempts :)
+
+# Docker Installation
+
+-- Installed Docker Desktop by downloading the installer here: https://www.docker.com/products/docker-desktop/
+-- Updated Windows Subsystem for Linux by using the code: wsl --update
