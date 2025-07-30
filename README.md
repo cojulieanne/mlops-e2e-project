@@ -75,4 +75,11 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 # Docker Installation
 
 -- Installed Docker Desktop by downloading the installer here: https://www.docker.com/products/docker-desktop/
+
 -- Updated Windows Subsystem for Linux by using the code: wsl --update
+
+# Docker and airflow folders
+
+-- Added docker folder and airflow folder
+
+-- Added airflow/dags to ensure modularity, allowing independent testing of workflow tasks without affecting the core ml code
