@@ -83,3 +83,7 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 -- Added docker folder and airflow folder
 
 -- Added airflow/dags to ensure modularity, allowing independent testing of workflow tasks without affecting the core ml code
+
+-- if this error is encountered "Virtualization support not detected" make sure to enable SVM on your BIOS
+
+--
