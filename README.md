@@ -92,4 +92,9 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 
 -- Pulled apache airflow in bash using command: "docker pull apache/airflow:2.9.3"
 
--- 
+-- use this code to run docker file: docker build -f docker/Dockerfile -t 72b86e078843edb3752c88bdd311e512da2f7d46f9f8aef109f4b9f55c54984d-ml-pipeline .
+
+-- use this code to run docker: docker run --rm \
+  -v "$(pwd)/data:/app/data" \
+  -v "$(pwd)/models:/app/models" \
+  72b86e078843edb3752c88bdd311e512da2f7d46f9f8aef109f4b9f55c54984d-ml-pipeline
