@@ -86,4 +86,4 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 
 -- if this error is encountered "Virtualization support not detected" make sure to enable SVM on your BIOS
 
---
+-- Verify installation with "docker --version
