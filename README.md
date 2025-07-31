@@ -89,3 +89,7 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 -- Verify installation with "docker --version
 
 -- Got the docker-compose.yaml here: https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html#fetching-docker-compose-yaml
+
+-- Pulled apache airflow in bash using command: "docker pull apache/airflow:2.9.3"
+
+-- 
