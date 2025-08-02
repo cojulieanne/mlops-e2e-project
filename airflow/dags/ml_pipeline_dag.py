@@ -1,4 +1,4 @@
-from airflow import DAG
+from airflow.sdk import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 from src.load_data import load_data
@@ -7,18 +7,11 @@ from src.preprocessing import preprocess_data
 from src.training import training
 from src.evaluation import evaluation
 
-default_args = {
-    'owner': 'airflow',
-    'start_date': datetime(2025, 8, 3),
-    'retries': 1,
-}
 
 with DAG(
     dag_id='ml_pipeline_dag',
-    default_args=default_args,
+    start_date=datetime(2022, 1, 1),
     schedule_interval=None,
-    catchup=False,
-    tags=['dag1', 'dag2'],
 ) as dag:
 
     loading_data = PythonOperator(
@@ -47,5 +40,5 @@ with DAG(
         python_callable=evaluation,
     )
 
-    # Set dependencies
+   # Set dependencies
     loading_data >> feat_data >> preprocess_task >> train_task >> evaluate_task

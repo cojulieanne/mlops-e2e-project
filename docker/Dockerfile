@@ -34,3 +34,4 @@ COPY src/ ./src/
  
 # Set default command
 CMD ["python", "src/run_pipeline.py"]
+# CMD ["tail", "-f", "/dev/null"]
