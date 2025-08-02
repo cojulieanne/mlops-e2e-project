@@ -5,7 +5,7 @@
 
 -- uv venv .venv
 
--- uv add pandas numpy seaborn scikit-learn tqdm gdown logging
+-- uv add pandas numpy seaborn scikit-learn tqdm gdown logging apache-airflow
 
 -- uv pip install pre-commit
 

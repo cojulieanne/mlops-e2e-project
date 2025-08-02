@@ -8,13 +8,13 @@ RUN pip install --no-cache-dir uv
  
 # Create a virtual environment inside the image
 RUN uv venv /opt/venv
-RUN mkdir data
-RUN mkdir data/bronze
-RUN mkdir data/silver
-RUN mkdir data/gold
-RUN mkdir models
-RUN mkdir reports
-RUN mkdir logs
+RUN mkdir -p data
+RUN mkdir -p data/bronze
+RUN mkdir -p data/silver
+RUN mkdir -p data/gold
+RUN mkdir -p models
+RUN mkdir -p reports
+RUN mkdir -p logs
  
 # Activate the venv for all future RUN/CMD instructions
 ENV VIRTUAL_ENV=/opt/venv
