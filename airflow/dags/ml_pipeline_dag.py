@@ -1,6 +1,8 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
+from src.load_data import load_data
+from src.feature_engineering import split_data
 from src.preprocessing import preprocess_data
 from src.training import training
 from src.evaluation import evaluation
@@ -19,6 +21,17 @@ with DAG(
     tags=['dag1', 'dag2'],
 ) as dag:
 
+    loading_data = PythonOperator(
+        task_id='load_data',
+        python_callable=load_data,
+    )
+
+    
+    feat_data = PythonOperator(
+        task_id='split_data',
+        python_callable=split_data,
+    )
+
     preprocess_task = PythonOperator(
         task_id='preprocess_data',
         python_callable=preprocess_data,
@@ -35,4 +48,4 @@ with DAG(
     )
 
     # Set dependencies
-    preprocess_task >> train_task >> evaluate_task
+    loading_data >> feat_data >> preprocess_task >> train_task >> evaluate_task
