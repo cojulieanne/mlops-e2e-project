@@ -98,3 +98,5 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
   -v "$(pwd)/data:/app/data" \
   -v "$(pwd)/models:/app/models" \
   72b86e078843edb3752c88bdd311e512da2f7d46f9f8aef109f4b9f55c54984d-ml-pipeline
+
+-- generated .env file AIRFLOW_UID then checked id value by using command id-u
