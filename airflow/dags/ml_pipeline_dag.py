@@ -9,36 +9,35 @@ from src.evaluation import evaluation
 
 
 with DAG(
-    dag_id='ml_pipeline_dag',
+    dag_id="ml_pipeline_dag",
     start_date=datetime(2022, 1, 1),
     schedule_interval=None,
 ) as dag:
 
     loading_data = PythonOperator(
-        task_id='load_data',
+        task_id="load_data",
         python_callable=load_data,
     )
 
-    
     feat_data = PythonOperator(
-        task_id='split_data',
+        task_id="split_data",
         python_callable=split_data,
     )
 
     preprocess_task = PythonOperator(
-        task_id='preprocess_data',
+        task_id="preprocess_data",
         python_callable=preprocess_data,
     )
 
     train_task = PythonOperator(
-        task_id='train_model',
+        task_id="train_model",
         python_callable=training,
     )
 
     evaluate_task = PythonOperator(
-        task_id='evaluate_model',
+        task_id="evaluate_model",
         python_callable=evaluation,
     )
 
-   # Set dependencies
+    # Set dependencies
     loading_data >> feat_data >> preprocess_task >> train_task >> evaluate_task
