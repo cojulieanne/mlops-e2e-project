@@ -71,6 +71,7 @@ x-airflow-common:
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
     # The following line can be used to set a custom config file, stored in the local config folder
     AIRFLOW_CONFIG: '/app/airflow/config/airflow.cfg'
+    AIRFLOW__CORE__DAGS_FOLDER: /app/airflow/dags
     PYTHONPATH: /app:/app/src
   volumes:
     - ${AIRFLOW_PROJ_DIR:-.}/airflow/dags:/app/airflow/dags
