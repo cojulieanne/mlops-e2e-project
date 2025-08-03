@@ -71,6 +71,8 @@ Tested precommits by:
 
     Improves readability of my code and validates my code. Detects error like indentation, accidental presses or random characters in the code due to some accidents.
 
+--ruff
+    For autocorrection of non-compliance, similar to black and flake8.
 ## Model
 
 --generated model.pkl after training
