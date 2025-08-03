@@ -38,6 +38,16 @@
     contains evaluation code here which uses the holdout value and outputs just the accuracy.
 
 ## pre-commit hooks
+
+Tested precommits by:
+
+1. Install pre-commit in environment by: pip install pre-commit
+
+2. "Pre-commit install" to run hooks automatically before committing
+
+3. pre-commit run --all-files to check if all files are compliant
+
+
 --flake8
 
     This was the mostly suggested hook, and I guess my most needed since i dont usually follow pep-8 :)
@@ -53,6 +63,14 @@
     This will be useful in tidying up my code since I noticed when revisiting my old notebooks for this homework that I do have a lot
     of unnecessary press of the "Enter" button
 
+--hadollint
+
+    Keeps dockerfiles clean and standardized and promotes leaner image
+
+--yamllint
+
+    Improves readability of my code and validates my code. Detects error like indentation, accidental presses or random characters in the code due to some accidents.
+
 ## Model
 
 --generated model.pkl after training
@@ -65,7 +83,7 @@ methods and models perform to predict the minority, in this specific problem the
 
 # Data Repo
 
--- Data used for this project can be accessed here: https://drive.google.com/uc?id=16_IoRl6EUCevWf4_l5orzRLjlnVG-WUd 
+-- Data used for this project can be accessed here: https://drive.google.com/uc?id=16_IoRl6EUCevWf4_l5orzRLjlnVG-WUd
 
 # Challenge while doing this homework
 
