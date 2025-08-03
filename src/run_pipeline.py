@@ -4,7 +4,9 @@ from feature_engineering import split_data
 from training import training
 from evaluation import evaluation
 from utils import logger
+
 logger = logger.get_logger(__name__)
+
 
 def main():
     logger.info("Starting the ML Pipeline...")
@@ -29,6 +31,7 @@ def main():
     logger.info("Model Evaluation Completed.")
 
     logger.info("Pipeline completed successfully.")
+
 
 if __name__ == "__main__":
     main()

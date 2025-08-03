@@ -1,21 +1,26 @@
-import pandas as pd
 import pickle
 from imblearn.metrics import sensitivity_score, geometric_mean_score
 from sklearn.metrics import accuracy_score
 import warnings
+
 warnings.filterwarnings("ignore")
+
 
 def evaluation(train, test):
     test_df = test
     train_df = train
 
-
-    with open('models/model.pkl', 'rb') as f:
+    with open("models/model.pkl", "rb") as f:
         pipeline = pickle.load(f)
 
-
-    X_train, y_train = train_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1), train_df["Pass/Fail (1=Pass, 0=Fail)"]
-    X_test, y_test = test_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1), test_df["Pass/Fail (1=Pass, 0=Fail)"]
+    X_train, y_train = (
+        train_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1),
+        train_df["Pass/Fail (1=Pass, 0=Fail)"],
+    )
+    X_test, y_test = (
+        test_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1),
+        test_df["Pass/Fail (1=Pass, 0=Fail)"],
+    )
 
     pipeline.fit(X_train, y_train)
 
@@ -25,7 +30,7 @@ def evaluation(train, test):
     recall = sensitivity_score(y_test, y_pred) * 100
     gmean = geometric_mean_score(y_test, y_pred) * 100
 
-    with open('reports/metrics.txt', 'w') as f:
+    with open("reports/metrics.txt", "w") as f:
         f.write(f"Test Accuracy: {accuracy:.2f}%\n")
         f.write(f"Test Recall: {recall:.2f}%\n")
         f.write(f"Test G-Mean: {gmean:.2f}%\n")

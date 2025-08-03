@@ -1,5 +1,5 @@
 import gdown
-import pandas as pd
+
 
 def load():
     file_id = "16_IoRl6EUCevWf4_l5orzRLjlnVG-WUd"

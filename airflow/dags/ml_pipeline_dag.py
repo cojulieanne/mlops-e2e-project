@@ -13,7 +13,6 @@ with DAG(
     start_date=datetime(2022, 1, 1),
     schedule_interval=None,
 ) as dag:
-
     loading_data = PythonOperator(
         task_id="load_data",
         python_callable=load_data,
