@@ -19,7 +19,7 @@ RUN mkdir -p logs
 # Activate the venv for all future RUN/CMD instructions
 ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-ENV PYTHONPATH="/app/src:$PYTHONPATH"
+ENV PYTHONPATH="/app:/app/src"
  
 # Copy pyproject and lock file
 COPY pyproject.toml uv.lock* ./
