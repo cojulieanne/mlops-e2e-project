@@ -17,7 +17,7 @@ RUN mkdir -p reports
 RUN mkdir -p logs
 
 # Activate the venv for all future RUN/CMD instructions
-ENV VIRTUAL_ENV=/opt/venv
+ENV VIRTUAL_ENV=/app/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 ENV PYTHONPATH="/app:/app/src"
 
