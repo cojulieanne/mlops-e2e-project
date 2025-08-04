@@ -121,9 +121,12 @@ services:
   airflow-apiserver:
     <<: *airflow-common
     command: api-server
+<<<<<<< HEAD
     build:
       context: .
       dockerfile: Dockerfile
+=======
+>>>>>>> 13cccf373c9d971cb2e539013867cf23931a004f
     volumes:
       - ./:/app
     ports:
