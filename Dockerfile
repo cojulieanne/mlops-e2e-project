@@ -60,8 +60,16 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 # Step 3: Copy your pyproject and lock file
 COPY --chown=airflow:0 pyproject.toml uv.lock* ./
 
+<<<<<<< HEAD
 # Step 4: Install dependencies into fresh venv
 RUN uv pip install -r pyproject.toml
+=======
+# Install Airflow with postgres extras
+RUN uv pip install "apache-airflow[postgres]==3.0.3"
+RUN uv pip compile pyproject.toml -o requirements.txt \
+    && pip install -r requirements.txt \
+    && rm requirements.txt
+>>>>>>> dbfd4b8 (completely working docker)
 
 # Step 5: Copy your app and data folders
 COPY --chown=airflow:0 src/ ./src/
@@ -72,5 +80,19 @@ COPY --chown=airflow:0 models/ ./models/
 COPY --chown=airflow:0 reports/ ./reports/
 COPY --chown=airflow:0 logs/ ./logs/
 
+<<<<<<< HEAD
 # Default command
 CMD ["python", "src/run_pipeline.py"]
+=======
+
+RUN pip install --no-cache-dir asyncpg
+
+# # Now compile + install your project deps
+# RUN uv pip compile pyproject.toml -o requirements.txt && \
+#     uv pip install -r requirements.txt && \
+#     rm requirements.txt
+
+COPY src/ ./src/
+
+CMD ["python", "src/run_pipeline.py"]
+>>>>>>> dbfd4b8 (completely working docker)

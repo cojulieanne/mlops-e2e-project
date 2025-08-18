@@ -1,21 +1,21 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime
-from src.load_data import load_data
-from src.feature_engineering import split_data
-from src.preprocessing import preprocess_data
-from src.training import training
-from src.evaluation import evaluation
+from src.load_data.load_data import load
+from src.feature_engineering.split_data import split_data
+from src.preprocessing.preprocess_data import preprocess_data
+from src.training.training import training
+from src.evaluation.evaluation import evaluation
 
 
 with DAG(
     dag_id="ml_pipeline_dag",
     start_date=datetime(2022, 1, 1),
-    schedule_interval=None,
+    schedule=None,
 ) as dag:
     loading_data = PythonOperator(
         task_id="load_data",
-        python_callable=load_data,
+        python_callable=load,
     )
 
     feat_data = PythonOperator(
