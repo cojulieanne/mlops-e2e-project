@@ -21,7 +21,9 @@ COPY pyproject.toml uv.lock* ./
 
 # Install Airflow with postgres extras
 RUN uv pip install "apache-airflow[postgres]==3.0.3"
-RUN pip install --no-cache-dir gdown
+RUN uv pip compile pyproject.toml -o requirements.txt \
+    && pip install -r requirements.txt \
+    && rm requirements.txt
 
 # Re-force psycopg2-binary explicitly (ensures it lands in venv site-packages)
 RUN pip install --no-cache-dir "apache-airflow[postgres]==3.0.3" psycopg2-binary
@@ -29,10 +31,10 @@ RUN pip install --no-cache-dir "apache-airflow[postgres]==3.0.3" psycopg2-binary
 
 RUN pip install --no-cache-dir asyncpg
 
-# Now compile + install your project deps
-RUN uv pip compile pyproject.toml -o requirements.txt && \
-    uv pip install -r requirements.txt && \
-    rm requirements.txt
+# # Now compile + install your project deps
+# RUN uv pip compile pyproject.toml -o requirements.txt && \
+#     uv pip install -r requirements.txt && \
+#     rm requirements.txt
 
 COPY src/ ./src/
 
