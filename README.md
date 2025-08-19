@@ -124,3 +124,6 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 -- initialized airflow by using command: docker compose up airflow-init
 
 -- run all services using command: docker compose up -d (this allows the server to run)
+
+username: admin
+for pw: check plugins folder
