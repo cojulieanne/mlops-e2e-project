@@ -127,3 +127,8 @@ One challenge for me was fixing the creating the run_pipeline.py since I have to
 
 username: admin
 for pw: check plugins folder
+### I used root user configuration because I'm encountering errors if not using user: 0:0. I know this is not the best practice prof :D
+
+
+# Model Drift Detection
+For this project, data drift is simulated to evaluate the robustness of the pipeline and model monitoring. For numerical features such as age, hours of sleep, and hours reviewing, drift is introduced by either multiplying values by 1.2 or adding Gaussian noise with a standard deviation equal to 10% of the feature’s variability. For categorical features like course type and relationship status, 10–15% of the values are randomly flipped to other valid categories using uniform random selection. The target variable (Pass/Fail) is intentionally left unchanged so that only the feature distributions are affected. This approach creates somewhat "realistic" scenarios where changes in demographics, lifestyle, or reporting practices alter the data distribution, allowing us to test whether the MLflow-based monitoring system can effectively detect and respond to model drift.
