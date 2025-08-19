@@ -38,15 +38,4 @@ RUN pip install --no-cache-dir asyncpg
 
 COPY src/ ./src/
 
-
 CMD ["python", "src/run_pipeline.py"]
-# # CMD ["tail", "-f", "/dev/null"]
-
-# RUN uv pip compile pyproject.toml -o requirements.txt && \
-#     uv pip install -r requirements.txt && \
-#     rm requirements.txt
-
-COPY src/ ./src/
-
-CMD ["python", "src/run_pipeline.py"]
-
