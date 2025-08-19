@@ -1,37 +1,44 @@
-# FROM python:3.12-slim
+FROM python:3.12-slim
 
-# # Set working directory
-# WORKDIR /app
+WORKDIR /app
 
-# # Install uv
-# RUN pip install --no-cache-dir uv
+# System deps just in case
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-# # Create a virtual environment inside the image
-# RUN uv venv /opt/venv
-# RUN mkdir -p data
-# RUN mkdir -p data/bronze
-# RUN mkdir -p data/silver
-# RUN mkdir -p data/gold
-# RUN mkdir -p models
-# RUN mkdir -p reports
-# RUN mkdir -p logs
+# Install uv
+RUN pip install --no-cache-dir uv
 
-# # Activate the venv for all future RUN/CMD instructions
-# ENV VIRTUAL_ENV=/app/venv
-# ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-# ENV PYTHONPATH="/app:/app/src"
+# Create venv
+RUN uv venv /app/venv
+ENV VIRTUAL_ENV=/app/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PYTHONPATH="/app:/app/src"
 
-# # Copy pyproject and lock file
-# COPY pyproject.toml uv.lock* ./
+# Copy pyproject + lock
+COPY pyproject.toml uv.lock* ./
 
-# # Install dependencies in the venv (no --system needed)
+# Install Airflow with postgres extras
+RUN uv pip install "apache-airflow[postgres]==3.0.3"
+RUN uv pip compile pyproject.toml -o requirements.txt \
+    && pip install -r requirements.txt \
+    && rm requirements.txt
+
+# Re-force psycopg2-binary explicitly (ensures it lands in venv site-packages)
+RUN pip install --no-cache-dir "apache-airflow[postgres]==3.0.3" psycopg2-binary
+
+
+RUN pip install --no-cache-dir asyncpg
+
+# # Now compile + install your project deps
 # RUN uv pip compile pyproject.toml -o requirements.txt && \
 #     uv pip install -r requirements.txt && \
 #     rm requirements.txt
 
-# # Copy source code
-# COPY src/ ./src/
+COPY src/ ./src/
 
+<<<<<<< HEAD
 
 # # Set default command
 # CMD ["python", "src/run_pipeline.py"]
@@ -96,3 +103,6 @@ COPY src/ ./src/
 
 CMD ["python", "src/run_pipeline.py"]
 >>>>>>> dbfd4b8 (completely working docker)
+=======
+CMD ["python", "src/run_pipeline.py"]
+>>>>>>> f9ab9cf38846437a6b21a09079c9d6578aa0c553
