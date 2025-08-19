@@ -6,21 +6,14 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def evaluation(train, test):
-    test_df = test
-    train_df = train
+def evaluation(xtrain, ytrain, xtest, ytest):
+
 
     with open("models/model.pkl", "rb") as f:
         pipeline = pickle.load(f)
 
-    X_train, y_train = (
-        train_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1),
-        train_df["Pass/Fail (1=Pass, 0=Fail)"],
-    )
-    X_test, y_test = (
-        test_df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1),
-        test_df["Pass/Fail (1=Pass, 0=Fail)"],
-    )
+    X_train, y_train = xtrain, ytrain
+    X_test, y_test = xtest, ytest
 
     pipeline.fit(X_train, y_train)
 

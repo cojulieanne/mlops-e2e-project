@@ -18,10 +18,10 @@ with DAG(
         python_callable=load,
     )
 
-    feat_data = PythonOperator(
-        task_id="split_data",
-        python_callable=split_data,
-    )
+    # feat_data = PythonOperator(
+    #     task_id="split_data",
+    #     python_callable=split_data,
+    # )
 
     preprocess_task = PythonOperator(
         task_id="preprocess_data",
@@ -39,4 +39,4 @@ with DAG(
     )
 
     # Set dependencies
-    loading_data >> feat_data >> preprocess_task >> train_task >> evaluate_task
+    loading_data >> preprocess_task >> train_task >> evaluate_task

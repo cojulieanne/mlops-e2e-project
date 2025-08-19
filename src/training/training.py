@@ -12,25 +12,14 @@ from sklearn.metrics import accuracy_score
 import warnings
 
 warnings.filterwarnings("ignore")
-
-# metrics
 from imblearn.metrics import sensitivity_score, geometric_mean_score
-
-# resampling methods
 from imblearn.under_sampling import RandomUnderSampler
-
-# pipeline
 from imblearn.pipeline import Pipeline
 import pickle
 
 
-def training(train_df):
-    df = train_df
-
-    X_trainval, y_trainval = (
-        df.drop("Pass/Fail (1=Pass, 0=Fail)", axis=1),
-        df["Pass/Fail (1=Pass, 0=Fail)"],
-    )
+def training(train_x, train_y):
+    X_trainval, y_trainval = train_x, train_y
 
     models_dict = {
         "LogisticRegressor": LogisticRegression(penalty="l2"),

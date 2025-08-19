@@ -15,19 +15,19 @@ def main():
     logger.info("Loading Data Completed.")
 
     logger.info("Preprocessing data...")
-    preprocessed_data = preprocess_data.preprocess_data()
+    X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = preprocess_data.preprocess_data()
     logger.info("Preprocessing completed.")
 
-    logger.info("Splitting Data...")
-    train_data, test_data = split_data.split_data(preprocessed_data)
-    logger.info("Data Splitting Completed.")
+    # logger.info("Splitting Data...")
+    # train_data, test_data = split_data.split_data(preprocessed_data)
+    # logger.info("Data Splitting Completed.")
 
     logger.info("Training Model...")
-    model = training.training(train_data)
+    model = training.training(X_train, y_train)
     logger.info("Model Training Completed.")
 
     logger.info("Evaluating Model...")
-    evaluation.evaluation(train_data, test_data)
+    evaluation.evaluation(X_train, y_train, X_test, y_test)
     logger.info("Model Evaluation Completed.")
 
     logger.info("Pipeline completed successfully.")
