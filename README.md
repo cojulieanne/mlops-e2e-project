@@ -132,3 +132,12 @@ for pw: check plugins folder
 
 # Model Drift Detection
 For this project, data drift is simulated to evaluate the robustness of the pipeline and model monitoring. For numerical features such as age, hours of sleep, and hours reviewing, drift is introduced by either multiplying values by 1.2 or adding Gaussian noise with a standard deviation equal to 10% of the feature’s variability. For categorical features like course type and relationship status, 10–15% of the values are randomly flipped to other valid categories using uniform random selection. The target variable (Pass/Fail) is intentionally left unchanged so that only the feature distributions are affected. This approach creates somewhat "realistic" scenarios where changes in demographics, lifestyle, or reporting practices alter the data distribution, allowing us to test whether the MLflow-based monitoring system can effectively detect and respond to model drift.
+
+
+# Install dependencies for MLFlow:
+mlflow = "==3.1.4"
+evidently = "==0.7.11"
+psycopg2-binary = "==2.9.10"
+
+# Folder Structure
+I set up the folder structure to keep experiments, artifacts, and reports easy to manage. The mlflow folder is where MLflow automatically tracks my runs and saves model artifacts, so everything related to experiments is organized in one folder. I also added a reports folder for outputs like drift detection results, which makes it easier to monitor changes in the data over time. This way, the workflow is organized, and anyone looking at the project can quickly find what they need.
