@@ -19,26 +19,21 @@ def detect_drift(reference_data_path: str, current_data_path: str) -> Dict[str, 
         current_features = current_data
 
     report = Report(metrics=[DataDriftPreset()])
-    report.run(reference_features, current_features)
+    report.run(
+        reference_data=reference_features,
+        current_data=current_features
+    )
 
     report_dict = report.as_dict()
+    drift_result = report_dict["metrics"][0]["result"]
 
-    drift_detected = report_dict["metrics"][0]["result"]["dataset_drift"]
-
-
-    feature_drift_info = report_dict["metrics"][1]["result"]["drift_by_columns"]
-
-    selected_features = list(feature_drift_info.keys())[:3]
+    drift_detected = drift_result["dataset_drift"]
+    overall_drift_score = drift_result["drift_share"]
 
     feature_drifts = {
-        f: feature_drift_info[f]["drift_score"] for f in selected_features
+        item["column_name"]: item["drift_score"]
+        for item in drift_result["drift_by_columns"]
     }
-
-    overall_drift_score = (
-        sum(feature_drifts.values()) / len(feature_drifts)
-        if feature_drifts
-        else 0.0
-    )
 
     result = {
         "drift_detected": drift_detected,

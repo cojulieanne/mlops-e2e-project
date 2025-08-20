@@ -4,7 +4,7 @@ from preprocessing import preprocess_data
 from training import training
 from evaluation import evaluation
 from utils import logger
-from drift_detection import detect_drift   # 👈 import drift detection
+from drift_detection import detect_drift
 
 logger = logger.get_logger(__name__)
 
