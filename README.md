@@ -154,3 +154,6 @@ curl http://localhost:5000
 
 This returned an html after running.
 
+# Model Registration
+Since the goal of the model is to maximize recall, I set up a recall > 0.8 threshold.
+This is realistic since logically, we also dont want students failing so we want to detect even the slightest drift in the model.
