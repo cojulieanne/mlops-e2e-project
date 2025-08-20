@@ -141,3 +141,16 @@ psycopg2-binary = "==2.9.10"
 
 # Folder Structure
 I set up the folder structure to keep experiments, artifacts, and reports easy to manage. The mlflow folder is where MLflow automatically tracks my runs and saves model artifacts, so everything related to experiments is organized in one folder. I also added a reports folder for outputs like drift detection results, which makes it easier to monitor changes in the data over time. This way, the workflow is organized, and anyone looking at the project can quickly find what they need.
+
+# Dockerfile.mlflow
+Created a dockerfile for mlflow.
+
+# Docker-compose
+Modified the postgres service to mlflow-postgres to avoid conflicts in the exisiting postgres service
+
+# Composed and tested the new docker
+docker-compose up -d
+curl http://localhost:5000
+
+This returned an html after running.
+

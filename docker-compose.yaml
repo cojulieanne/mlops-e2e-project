@@ -300,7 +300,7 @@ services:
 
   #######mlflow services########
   mlflow-postgres:
-    image: postgres:15.8-alpine
+    image: postgres:13-alpine
     environment:
       POSTGRES_USER: mlflow
       POSTGRES_PASSWORD: mlflow
@@ -308,7 +308,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres-db-volume:/var/lib/postgresql/data
+      - mlflow-db-volume:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "mlflow"]
       interval: 10s
@@ -334,5 +334,6 @@ services:
     restart: always
 volumes:
   postgres-db-volume:
+  mlflow-db-volume:
   mlflow-artifacts:
 
