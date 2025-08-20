@@ -2,14 +2,14 @@ import pandas as pd
 import json
 import os
 from typing import Dict, Any
-from evidently.report import Report
-from evidently.metric_preset import DataDriftPreset
+from evidently import Report
+from evidently.presets import DataDriftPreset
 
 
 def detect_drift(reference_data_path: str, current_data_path: str) -> Dict[str, Any]:
     reference_data = pd.read_csv(reference_data_path)
     current_data = pd.read_csv(current_data_path)
-
+    
 
     if "target" in reference_data.columns:
         reference_features = reference_data.drop(columns=["target"])
@@ -17,22 +17,24 @@ def detect_drift(reference_data_path: str, current_data_path: str) -> Dict[str, 
     else:
         reference_features = reference_data
         current_features = current_data
-
     report = Report(metrics=[DataDriftPreset()])
-    report.run(
+    
+    eval = report.run(
         reference_data=reference_features,
         current_data=current_features
     )
+    report_dict = eval.dict()
 
-    report_dict = report.as_dict()
-    drift_result = report_dict["metrics"][0]["result"]
-
-    drift_detected = drift_result["dataset_drift"]
-    overall_drift_score = drift_result["drift_share"]
+    
+    overall_metric = report_dict["metrics"][0]
+    overall_drift_score = overall_metric["value"]["share"]
+    drifted_columns = overall_metric["value"]["count"]
+    drift_detected = drifted_columns > 0  
 
     feature_drifts = {
-        item["column_name"]: item["drift_score"]
-        for item in drift_result["drift_by_columns"]
+        m["metric_id"].replace("ValueDrift(column=", "").rstrip(")"): float(m["value"])
+        for m in report_dict["metrics"]
+        if m["metric_id"].startswith("ValueDrift")
     }
 
     result = {
