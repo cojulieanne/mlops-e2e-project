@@ -1,29 +1,29 @@
 import pickle
+import json
+import warnings
 from imblearn.metrics import sensitivity_score, geometric_mean_score
 from sklearn.metrics import accuracy_score
-import warnings
 
 warnings.filterwarnings("ignore")
 
 
 def evaluation(xtrain, ytrain, xtest, ytest):
-
-
     with open("models/model.pkl", "rb") as f:
         pipeline = pickle.load(f)
 
-    X_train, y_train = xtrain, ytrain
-    X_test, y_test = xtest, ytest
+    pipeline.fit(xtrain, ytrain)
 
-    pipeline.fit(X_train, y_train)
+    y_pred = pipeline.predict(xtest)
 
-    y_pred = pipeline.predict(X_test)
+    accuracy = accuracy_score(ytest, y_pred) * 100
+    recall = sensitivity_score(ytest, y_pred) * 100
+    gmean = geometric_mean_score(ytest, y_pred) * 100
 
-    accuracy = accuracy_score(y_test, y_pred) * 100
-    recall = sensitivity_score(y_test, y_pred) * 100
-    gmean = geometric_mean_score(y_test, y_pred) * 100
+    results = {
+        "accuracy": round(accuracy, 2),
+        "recall": round(recall, 2),
+        "gmean": round(gmean, 2)
+    }
 
-    with open("reports/metrics.txt", "w") as f:
-        f.write(f"Test Accuracy: {accuracy:.2f}%\n")
-        f.write(f"Test Recall: {recall:.2f}%\n")
-        f.write(f"Test G-Mean: {gmean:.2f}%\n")
+    with open("reports/evaluation_results.json", "w") as f:
+        json.dump(results, f, indent=4)
