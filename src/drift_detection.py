@@ -1,65 +1,60 @@
 import pandas as pd
-import numpy as np
-import mlflow
 import json
 import os
-from scipy.stats import ks_2samp, chi2_contingency
+from typing import Dict, Any
+from evidently.report import Report
+from evidently.metric_preset import DataDriftPreset
 
 
-def calculate_drift(original, drifted, numerical_cols, categorical_cols):
-    drift_results = {}
-
-    for col in numerical_cols:
-        stat, pval = ks_2samp(original[col], drifted[col])
-        drift_results[col] = {
-            "drift_statistic": float(stat),
-            "p_value": float(pval),
-            "drift_detected": bool(pval < 0.05),
-            "type": "numerical",
-        }
-
-    for col in categorical_cols:
-        contingency = pd.crosstab(original[col], drifted[col])
-        chi2, pval, _, _ = chi2_contingency(contingency)
-        drift_results[col] = {
-            "chi2_statistic": float(chi2),
-            "p_value": float(pval),
-            "drift_detected": bool(pval < 0.05),
-            "type": "categorical",
-        }
-
-    return drift_results
+def detect_drift(reference_data_path: str, current_data_path: str) -> Dict[str, Any]:
+    reference_data = pd.read_csv(reference_data_path)
+    current_data = pd.read_csv(current_data_path)
 
 
-def log_drift_to_mlflow(drift_results, dataset_name="train"):
-    with mlflow.start_run(run_name=f"drift_detection_{dataset_name}", nested=True):
-        for col, metrics in drift_results.items():
-            for k, v in metrics.items():
-                if k != "type":
-                    mlflow.log_metric(f"{dataset_name}_{col}_{k}", v)
+    if "target" in reference_data.columns:
+        reference_features = reference_data.drop(columns=["target"])
+        current_features = current_data.drop(columns=["target"])
+    else:
+        reference_features = reference_data
+        current_features = current_data
+
+    report = Report(metrics=[DataDriftPreset()])
+    report.run(reference_features, current_features)
+
+    report_dict = report.as_dict()
+
+    drift_detected = report_dict["metrics"][0]["result"]["dataset_drift"]
+
+
+    feature_drift_info = report_dict["metrics"][1]["result"]["drift_by_columns"]
+
+    selected_features = list(feature_drift_info.keys())[:3]
+
+    feature_drifts = {
+        f: feature_drift_info[f]["drift_score"] for f in selected_features
+    }
+
+    overall_drift_score = (
+        sum(feature_drifts.values()) / len(feature_drifts)
+        if feature_drifts
+        else 0.0
+    )
+
+    result = {
+        "drift_detected": drift_detected,
+        "feature_drifts": feature_drifts,
+        "overall_drift_score": overall_drift_score,
+    }
+
+    os.makedirs("reports", exist_ok=True)
+    with open("reports/drift_report.json", "w") as f:
+        json.dump(result, f, indent=4)
+
+    return result
 
 
 if __name__ == "__main__":
-    train = pd.read_csv("data/silver/preprocessed_ml2_student_performance.csv")
-    test = pd.read_csv("data/silver/preprocessed_ml2_student_performance.csv")
-    drifted_train = pd.read_csv("data/silver/drifted_train.csv")
-    drifted_test = pd.read_csv("data/silver/drifted_test.csv")
-
-    numerical_cols = ["Age", "Hours of Sleep", "Hours Reviewing"]
-    categorical_cols = [
-        "Course (STEM=1, Non-STEM=0)",
-        "In a Relationship (1=Yes, 0=No, 0.5=It's complicated)",
-    ]
-
-    mlflow.set_experiment("student_performance_drift_detection")
-
-    train_drift = calculate_drift(train, drifted_train, numerical_cols, categorical_cols)
-    test_drift = calculate_drift(test, drifted_test, numerical_cols, categorical_cols)
-
-    log_drift_to_mlflow(train_drift, "train")
-    log_drift_to_mlflow(test_drift, "test")
-
-    report = {"train_drift": train_drift, "test_drift": test_drift}
-    os.makedirs("reports", exist_ok=True)
-    with open("reports/drift_report.json", "w") as f:
-        json.dump(report, f, indent=4)
+    output = detect_drift(
+        "data/silver/preprocessed_ml2_student_performance.csv",
+        "data/silver/drifted_test.csv",
+    )
