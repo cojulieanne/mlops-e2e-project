@@ -164,3 +164,13 @@ python src/run_pipeline.py
 airflow dags test ml_pipeline_dag 2025-08-02
 # Verify MLFlow UI
 curl http://localhost:5000
+
+
+### Challenges for HW3
+
+Coming from homework2, where I have a very hard time fixing docker, I guess it was the bulk of my task in homework3 as well. I have spent sleepless nights to make this project work.
+The hardest challenge working with homework 3 was the import for evidently. I know it may sound funny, but I did read the documentation, tried different versions of the package, asked gpt about the versions and compatibilities, and restructured my code (I also messaged you prof), but to no avail. I got a message from 3 of my cohortmates and they have the same issue and none of us can solve it, until another cohortmate responded that he was able to solve the issue. The imports were different from the project specifications (the Required Imports: evidently.report.Report , evidently.metric_preset.DataDriftPreset).
+
+After that it was easy. I was able to move from the issue and test each component. So happy I get to have this project working.
+
+This experience is all new for me, and for sure I know that I learned a lot from trying.
