@@ -158,3 +158,9 @@ This returned an html after running.
 Since the goal of the model is to maximize recall, I set up a recall > 0.8 threshold.
 This is realistic since logically, we also dont want students failing so we want to detect even the slightest drift in the model.
 
+# Test standalone pipeline
+python src/run_pipeline.py
+# Test Airflow DAG
+airflow dags test ml_pipeline_dag 2025-08-02
+# Verify MLFlow UI
+curl http://localhost:5000
