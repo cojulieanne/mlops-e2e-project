@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/815064030373702495/0905b1d784bb4751bf6936109ed780a0/artifacts
+end_time: 1756295161978
+entry_point_name: ''
+experiment_id: '815064030373702495'
+lifecycle_stage: active
+run_id: 0905b1d784bb4751bf6936109ed780a0
+run_name: enchanting-hare-451
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756295161789
+status: 4
+tags: []
+user_id: Secondary Account

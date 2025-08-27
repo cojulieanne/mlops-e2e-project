@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/0/00e1c1db66114b27a9f6dbb8837cb8e3/artifacts
+end_time: 1756318003189
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 00e1c1db66114b27a9f6dbb8837cb8e3
+run_name: painted-sloth-545
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756317995096
+status: 3
+tags: []
+user_id: Secondary Account

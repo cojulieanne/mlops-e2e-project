@@ -1,5 +1,11 @@
 uv.lock
 .venv/
 .vscode
-src/*/__pycache__
+*__pycache__/
 .env
+*mlartifacts/
+*/mlruns/
+*.log
+*.db
+*test.ipynb
+*.egg-info/
