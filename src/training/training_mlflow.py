@@ -44,7 +44,7 @@ warnings.filterwarnings("ignore")
 
 # ------------------------------ Config ------------------------------
 
-MLFLOW_TRACKING_URI =  "http://localhost:5000"
+MLFLOW_TRACKING_URI =  "http://mlflow:5000"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 
@@ -84,13 +84,17 @@ class CustomMLModel(mlflow.pyfunc.PythonModel):
         return self.model.predict(processed_input)
 
 
-def get_default_binary_models(X_train, y_train, X_test, y_test, cv = None):
+def get_default_binary_models(cv = None):
     """
     Trains and evaluates a set of default binary classification models.
 
     Returns:
         dict: model_name → metrics
     """
+    X_train = pd.read_csv(PROJECT_ROOT/"data/gold/X_train.csv")
+    y_train = pd.read_csv(PROJECT_ROOT/"data/gold/y_train.csv")
+    X_test = pd.read_csv(PROJECT_ROOT/"data/gold/X_test.csv")
+    y_test = pd.read_csv(PROJECT_ROOT/"data/gold/y_test.csv")
 
     client = MlflowClient()
     mlflow.set_experiment("ML Experiments") 

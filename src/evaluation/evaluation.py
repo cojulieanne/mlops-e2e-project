@@ -2,6 +2,7 @@ import pickle
 import json
 import warnings
 import joblib
+import pandas as pd
 from imblearn.metrics import sensitivity_score, geometric_mean_score
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, average_precision_score, f1_score, precision_recall_curve
 import numpy as np
@@ -22,7 +23,11 @@ def project_root() -> Path:
 PROJECT_ROOT = project_root()
 print(PROJECT_ROOT)
 
-def evaluation(xtrain, ytrain, xtest, ytest):
+def evaluation():
+    xtrain = pd.read_csv(PROJECT_ROOT/"data/gold/X_train.csv")
+    ytrain = pd.read_csv(PROJECT_ROOT/"data/gold/y_train.csv")
+    xtest = pd.read_csv(PROJECT_ROOT/"data/gold/X_test.csv")
+    ytest = pd.read_csv(PROJECT_ROOT/"data/gold/y_test.csv")
     pipeline = joblib.load(PROJECT_ROOT/"models/RandomUnderSampler_RandomForest.joblib")
 
     pipeline.fit(xtrain, ytrain)
@@ -51,14 +56,17 @@ def evaluation(xtrain, ytrain, xtest, ytest):
     with open("reports/evaluation_results.json", "w") as f:
         json.dump(results, f, indent=4)
 
-def evaluate_single_model(model, X_train, y_train, X_test, y_test, cv = None):
+def evaluate_single_model(model, cv = None):
     """
     Trains and evaluates a single model on binary classification metrics.
 
     Returns:
         dict: {accuracy, precision, recall, f1_score, roc_auc}
     """
-
+    X_train = pd.read_csv(PROJECT_ROOT/"data/gold/X_train.csv")
+    y_train = pd.read_csv(PROJECT_ROOT/"data/gold/y_train.csv")
+    X_test = pd.read_csv(PROJECT_ROOT/"data/gold/X_test.csv")
+    y_test = pd.read_csv(PROJECT_ROOT/"data/gold/y_test.csv")
     if cv:
         cv_results = cv_binary_metrics(model, X_train, y_train, cv)
 
@@ -91,8 +99,9 @@ def evaluate_single_model(model, X_train, y_train, X_test, y_test, cv = None):
     return model, test_results, cv_results
 
 
-def cv_binary_metrics(estimator, X, y, cv):
-
+def cv_binary_metrics(estimator, cv):
+    X = pd.read_csv(PROJECT_ROOT/"data/gold/X_train.csv")
+    y = pd.read_csv(PROJECT_ROOT/"data/gold/y_train.csv")
     acc_list, prauc_list = [], []
     pr_list, rec_list, rocauc_list, f1_list, gmean_list = [], [], [], [], []
 
