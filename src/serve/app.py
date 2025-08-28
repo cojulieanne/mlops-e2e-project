@@ -22,6 +22,7 @@ import uvicorn
 MLFLOW_TRACKING_URI =  "http://mlflow:5000"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 client = MlflowClient()
+print(client.get_registered_model("BestClassifierModel"))
 
 MODEL_NAME =  "BestClassifierModel"
 mvs = client.search_model_versions(f"name='{MODEL_NAME}'")

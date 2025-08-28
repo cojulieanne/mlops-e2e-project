@@ -37,5 +37,8 @@ RUN pip install --no-cache-dir asyncpg
 #     rm requirements.txt
 
 COPY src/ ./src/
+# Copy your DAGs
+COPY src/dags/ $AIRFLOW_HOME/dags/
 
-CMD ["python", "src/run_pipeline.py"]
+# Default command (webserver + scheduler for airflow)
+CMD ["airflow", "standalone"]

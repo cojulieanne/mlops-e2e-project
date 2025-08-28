@@ -338,21 +338,22 @@ services:
   fastapi:
     build:
       context: .
-      dockerfile: Dockerfile.fastapi   
+      dockerfile: Dockerfile.fastapi
     ports:
-      - "8000:8000"                    
+      - "8000:8000"
     environment:
       HOST: 0.0.0.0
       PORT: 8000
-      RELOAD: 1                       
+      RELOAD: 1
       LOG_LEVEL: INFO
       TOP_N_FEATURES: 5
       MLFLOW_TRACKING_URI: http://mlflow:5000
-    volumes:
-      - .:/app                      
     depends_on:
       mlflow:
         condition: service_started
+    volumes:
+      - mlflow-artifacts:/mlflow/artifacts
+      - ./mlflow:/mlflow
     restart: always
     
 volumes:
