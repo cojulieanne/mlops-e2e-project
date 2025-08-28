@@ -72,11 +72,6 @@ def startup() -> None:
         logger.exception("Failed to find model.")
         raise RuntimeError(f"Could not load model from MLflow: {e}") from e
 
-    logger.info(
-            "Model ready. name=%s version=%s",
-            MODEL_NAME, MODEL_VERSION,
-        )
-
     STATE.update(
         model = model,
         model_uri = MODEL_URI,

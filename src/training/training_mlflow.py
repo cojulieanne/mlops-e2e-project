@@ -188,10 +188,11 @@ def get_default_binary_models(cv = None):
         results_df = pd.DataFrame(results).T  # transpose if models are keys
         results_df = results_df.sort_values(by = 'cv_geometric_mean', ascending=False)
         out_csv = PROJECT_ROOT/"reports"/"default_binary_models_results.csv"
+        print(out_csv)
         results_df.to_csv(out_csv)
         print("Saved results to default_binary_models_results.csv")
 
-        mlflow.log_artifact(str(out_csv), artifact_path="reports")
+        #mlflow.log_artifact(out_csv, artifact_path="reports")
 
         
         results_df['exclude'] = results_df.apply(lambda row: (row == 0).sum(), axis=1) > 0
@@ -245,6 +246,7 @@ def get_default_binary_models(cv = None):
             X_ex = X_test.iloc[:5]
             yhat_ex = best_pipe.predict_proba(X_ex)
             signature = infer_signature(X_ex, yhat_ex)
+            print(signature)
 
             joblib.dump(best_pipe, PROJECT_ROOT/"models"/f"{best_name}.joblib")
             mlflow.pyfunc.log_model(
@@ -261,7 +263,7 @@ def get_default_binary_models(cv = None):
                 ],
                 registered_model_name=f"BestClassifierModel_{best_name}"   # 👈 registers here
             )
-        mlflow.end_run()
+        
 
     return results
 
