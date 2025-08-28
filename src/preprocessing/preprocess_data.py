@@ -10,8 +10,8 @@ def preprocess_data():
         lambda x: 1 if x == 0 else 0
     )
 
-    silver_path = "data/silver/preprocessed_ml2_student_performance.csv"
-    df.to_csv(silver_path, index=False)
+    gold_path = "data/gold/preprocessed_ml2_student_performance.csv"
+    df.to_csv(gold_path, index=False)
 
 
     target_col = "Pass/Fail (1=Pass, 0=Fail)"
@@ -27,6 +27,11 @@ def preprocess_data():
         "Course (STEM=1, Non-STEM=0)",
         "In a Relationship (1=Yes, 0=No, 0.5=It's complicated)",
     ]
+
+    X_train.to_csv("data/gold/X_train.csv", index=False)
+    X_test.to_csv("data/gold/X_test.csv", index=False)
+    y_train.to_csv("data/gold/y_train.csv", index=False)
+    y_test.to_csv("data/gold/y_test.csv", index=False)
 
     #Drift
     def create_drifted_copy(X_data):
@@ -58,12 +63,13 @@ def preprocess_data():
     drifted_test = X_test_drifted.copy()
     drifted_test[target_col] = y_test.values
 
-    drifted_train.to_csv("data/silver/drifted_train.csv", index=False)
-    drifted_test.to_csv("data/silver/drifted_test.csv", index=False)
+    drifted_train.to_csv("data/gold/drifted_train.csv", index=False)
+    drifted_test.to_csv("data/gold/drifted_test.csv", index=False)
+    
 
-    return (X_train,
-            X_test,
-            y_train,
-            y_test,
-            X_train_drifted,
-            X_test_drifted)
+    # return (X_train,
+    #         X_test,
+    #         y_train,
+    #         y_test,
+    #         X_train_drifted,
+    #         X_test_drifted)

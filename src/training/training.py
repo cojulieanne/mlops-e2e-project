@@ -44,8 +44,8 @@ class CustomMLModel(mlflow.pyfunc.PythonModel):
         return self.model.predict(processed_input)
 
 
-def training(train_x, train_y):
-    X_trainval, y_trainval = train_x, train_y
+def training(train_x = "data/gold/X_train.csv", train_y = "data/gold/y_train.csv"):
+    X_trainval, y_trainval = pd.read_csv(train_x), pd.read_csv(train_y)
 
     models_dict = {
         "LogisticRegressor": LogisticRegression(penalty="l2"),

@@ -1,16 +1,20 @@
 import pickle
 import json
 import warnings
+import pandas as pd
 from imblearn.metrics import sensitivity_score, geometric_mean_score
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, average_precision_score, f1_score
 
 warnings.filterwarnings("ignore")
 
 
-def evaluation(xtrain, ytrain, xtest, ytest):
+def evaluation():
     with open("models/model.pkl", "rb") as f:
         pipeline = pickle.load(f)
-
+    xtrain=pd.read_csv("data/gold/X_train.csv")
+    ytrain=pd.read_csv("data/gold/y_train.csv")
+    xtest=pd.read_csv("data/gold/X_test.csv")
+    ytest=pd.read_csv("data/gold/y_test.csv")
     pipeline.fit(xtrain, ytrain)
 
     y_pred = pipeline.predict(xtest)

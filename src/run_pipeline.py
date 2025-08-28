@@ -17,22 +17,25 @@ def main():
     logger.info("Loading Data Completed.")
 
     logger.info("Preprocessing data...")
-    X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = preprocess_data.preprocess_data()
+    # X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = 
+    preprocess_data.preprocess_data()
     logger.info("Preprocessing completed.")
 
     logger.info("Training Model...")
-    model = training.training(X_train, y_train)
+    # model = training.training(X_train, y_train)
+    training.training()
     logger.info("Model Training Completed.")
 
     logger.info("Evaluating Model...")
-    evaluation.evaluation(X_train, y_train, X_test, y_test)
+    # evaluation.evaluation(X_train, y_train, X_test, y_test)
+    evaluation.evaluation()
     logger.info("Model Evaluation Completed.")
 
     logger.info("Running Drift Detection...")
 
     test_drift_results = detect_drift(
         "data/silver/preprocessed_ml2_student_performance.csv",
-        "data/silver/drifted_test.csv" 
+        "data/gold/drifted_test.csv" 
     )
     mlflow.log_param("test_drift_detected", test_drift_results["drift_detected"])
     mlflow.log_param("test_overall_drift_score", test_drift_results["overall_drift_score"])
@@ -42,7 +45,7 @@ def main():
 
     train_drift_results = detect_drift(
         "data/silver/preprocessed_ml2_student_performance.csv", 
-        "data/silver/drifted_train.csv" 
+        "data/gold/drifted_train.csv" 
     )
     mlflow.log_param("train_drift_detected", train_drift_results["drift_detected"])
     mlflow.log_param("train_overall_drift_score", train_drift_results["overall_drift_score"])
