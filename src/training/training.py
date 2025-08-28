@@ -44,8 +44,8 @@ class CustomMLModel(mlflow.pyfunc.PythonModel):
         return self.model.predict(processed_input)
 
 
-def training(train_x, train_y):
-    X_trainval, y_trainval = train_x, train_y
+def training(train_x = "data/gold/X_train.csv" , train_y = "data/gold/y_train.csv"):
+    X_trainval, y_trainval = pd.read_csv(train_x), pd.read_csv(train_y)
 
     models_dict = {
         "LogisticRegressor": LogisticRegression(penalty="l2"),
@@ -117,7 +117,7 @@ def training(train_x, train_y):
         pickle.dump(best_pipeline, f)
 
 
-    mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_tracking_uri("http://mlflow:5000")
     with mlflow.start_run():
         if best_model_name == "RandomForestClassifier":
             mlflow.log_param("n_estimators", best_model.n_estimators if hasattr(best_model, "n_estimators") else None)

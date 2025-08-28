@@ -17,15 +17,18 @@ def main():
     logger.info("Loading Data Completed.")
 
     logger.info("Preprocessing data...")
-    X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = preprocess_data.preprocess_data()
+    # X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = preprocess_data.preprocess_data()
+    preprocess_data.preprocess_data()
     logger.info("Preprocessing completed.")
 
     logger.info("Training Model...")
-    model = training.training(X_train, y_train)
+    # model = training.training(X_train, y_train)
+    training.training()
     logger.info("Model Training Completed.")
 
     logger.info("Evaluating Model...")
-    evaluation.evaluation(X_train, y_train, X_test, y_test)
+    # evaluation.evaluation(X_train, y_train, X_test, y_test)
+    evaluation.evaluation()
     logger.info("Model Evaluation Completed.")
 
     logger.info("Running Drift Detection...")
