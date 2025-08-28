@@ -19,11 +19,11 @@ from mlflow.tracking import MlflowClient
 
 import uvicorn
 # ------------------------------ Config ------------------------------
-MLFLOW_TRACKING_URI =  "http://localhost:5000"
+MLFLOW_TRACKING_URI =  "http://mlflow:5000"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 client = MlflowClient()
 
-MODEL_NAME =  "BestClassifierModel_RandomUnderSampler_RandomForest"
+MODEL_NAME =  "BestClassifierModel"
 mvs = client.search_model_versions(f"name='{MODEL_NAME}'")
 latest = max(mvs, key=lambda mv: int(mv.version))  # raises if none exist
 MODEL_VERSION = latest.version
@@ -97,7 +97,7 @@ def predict(payload: dict):
 if __name__ == "__main__":
     uvicorn.run(
         "src.serve.app:app",
-        host=os.getenv("HOST", "127.0.0.1"),
+        host=os.getenv("HOST", "0.0.0.0"),
         port=int(os.getenv("PORT", "8000")),
         reload=bool(os.getenv("RELOAD", "1") == "1"),
     )

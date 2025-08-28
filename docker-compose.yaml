@@ -332,8 +332,30 @@ services:
       mlflow-postgres:
         condition: service_healthy
     restart: always
+
+
+##################### FastAPI service ########################
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile.fastapi   
+    ports:
+      - "8000:8000"                    
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8000
+      RELOAD: 1                       
+      LOG_LEVEL: INFO
+      TOP_N_FEATURES: 5
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    volumes:
+      - .:/app                      
+    depends_on:
+      mlflow:
+        condition: service_started
+    restart: always
+    
 volumes:
   postgres-db-volume:
   mlflow-db-volume:
   mlflow-artifacts:
-

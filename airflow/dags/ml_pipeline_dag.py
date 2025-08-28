@@ -10,6 +10,7 @@ from src.load_data.load_data import load
 from src.preprocessing.preprocess_data import preprocess_data
 # from src.feature_engineering.split_data import split_data
 from src.training.training_mlflow import get_default_binary_models
+from src.training.training import training
 from src.evaluation.evaluation import evaluation
 from src.drift_detection import detect_drift
 
@@ -18,7 +19,7 @@ def run_drift_detection():
     report_path = "reports/drift_report.json"
     results = detect_drift(
         "data/silver/preprocessed_ml2_student_performance.csv",
-        "data/silver/drifted_test.csv",
+        "data/gold/drifted_test.csv",
     )
     with open(report_path, "w") as f:
         json.dump(results, f, indent=4)
@@ -63,7 +64,8 @@ with DAG(
 
     train_task = PythonOperator(
         task_id="train_model",
-        python_callable=get_default_binary_models(cv=5),
+        # python_callable=get_default_binary_models(cv=5),
+        python_callable=training,
     )
 
     evaluate_task = PythonOperator(
@@ -83,7 +85,8 @@ with DAG(
 
     retrain_task = PythonOperator(
         task_id="retrain_model",
-        python_callable=get_default_binary_models(cv=5),
+        # python_callable=get_default_binary_models(cv=5),
+        python_callable=training,
     )
 
     pipeline_complete = EmptyOperator(task_id="pipeline_complete")

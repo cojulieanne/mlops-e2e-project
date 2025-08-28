@@ -46,7 +46,7 @@ warnings.filterwarnings("ignore")
 
 # ------------------------------ Config ------------------------------
 
-MLFLOW_TRACKING_URI =  "http://localhost:5000"
+MLFLOW_TRACKING_URI =  "http://mlflow:5000"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 
