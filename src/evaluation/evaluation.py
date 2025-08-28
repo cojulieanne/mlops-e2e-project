@@ -11,10 +11,17 @@ warnings.filterwarnings("ignore")
 def evaluation():
     with open("models/model.pkl", "rb") as f:
         pipeline = pickle.load(f)
+<<<<<<< HEAD
     xtrain=pd.read_csv("data/gold/X_train.csv")
     ytrain=pd.read_csv("data/gold/y_train.csv")
     xtest=pd.read_csv("data/gold/X_test.csv")
     ytest=pd.read_csv("data/gold/y_test.csv")
+=======
+    xtrain = pd.read_csv("data/gold/X_train.csv")
+    ytrain = pd.read_csv("data/gold/y_train.csv")
+    xtest = pd.read_csv("data/gold/X_test.csv")
+    ytest = pd.read_csv("data/gold/y_test.csv")
+>>>>>>> origin
     pipeline.fit(xtrain, ytrain)
 
     y_pred = pipeline.predict(xtest)

@@ -44,7 +44,11 @@ class CustomMLModel(mlflow.pyfunc.PythonModel):
         return self.model.predict(processed_input)
 
 
+<<<<<<< HEAD
 def training(train_x = "data/gold/X_train.csv", train_y = "data/gold/y_train.csv"):
+=======
+def training(train_x = "data/gold/X_train.csv" , train_y = "data/gold/y_train.csv"):
+>>>>>>> origin
     X_trainval, y_trainval = pd.read_csv(train_x), pd.read_csv(train_y)
 
     models_dict = {

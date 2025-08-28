@@ -17,7 +17,11 @@ def main():
     logger.info("Loading Data Completed.")
 
     logger.info("Preprocessing data...")
+<<<<<<< HEAD
     # X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = 
+=======
+    # X_train, X_test, y_train, y_test, X_train_drifted, X_test_drifted = preprocess_data.preprocess_data()
+>>>>>>> origin
     preprocess_data.preprocess_data()
     logger.info("Preprocessing completed.")
 

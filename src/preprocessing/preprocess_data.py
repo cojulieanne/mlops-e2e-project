@@ -27,6 +27,11 @@ def preprocess_data():
         "Course (STEM=1, Non-STEM=0)",
         "In a Relationship (1=Yes, 0=No, 0.5=It's complicated)",
     ]
+    
+    X_train.to_csv("data/gold/X_train.csv", index=False)
+    X_test.to_csv("data/gold/X_test.csv", index=False)
+    y_train.to_csv("data/gold/y_train.csv", index=False)
+    y_test.to_csv("data/gold/y_test.csv", index=False)
 
     X_train.to_csv("data/gold/X_train.csv", index=False)
     X_test.to_csv("data/gold/X_test.csv", index=False)
@@ -66,6 +71,7 @@ def preprocess_data():
     drifted_train.to_csv("data/gold/drifted_train.csv", index=False)
     drifted_test.to_csv("data/gold/drifted_test.csv", index=False)
     
+<<<<<<< HEAD
 
     # return (X_train,
     #         X_test,
@@ -73,3 +79,5 @@ def preprocess_data():
     #         y_test,
     #         X_train_drifted,
     #         X_test_drifted)
+=======
+>>>>>>> origin
