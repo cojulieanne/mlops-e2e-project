@@ -2,19 +2,34 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
+from pathlib import Path
+import sys
+import os
+
+def project_root() -> Path:
+    here = Path(__file__).resolve().parent
+    for p in (here, *here.parents):
+        if (p / "pyproject.toml").exists() or (p / ".git").exists():
+            return p
+    return here
+
+PROJECT_ROOT = project_root()
 
 def preprocess_data():
-    df = pd.read_csv("data/bronze/ml2_student_performance.csv")
+
+    df = pd.read_csv(PROJECT_ROOT / "data/bronze/ml2_student_performance.csv")
 
     df["Pass/Fail (1=Pass, 0=Fail)"] = df["Pass/Fail (1=Pass, 0=Fail)"].apply(
         lambda x: 1 if x == 0 else 0
     )
 
+    df.columns = ['Age', 'Course', 'Sleep_Hours', 'Relationship', 'Review_Hours', 'Pass_Fail']
+
     silver_path = "data/silver/preprocessed_ml2_student_performance.csv"
-    df.to_csv(silver_path, index=False)
+    df.to_csv(PROJECT_ROOT / silver_path, index=False)
 
 
-    target_col = "Pass/Fail (1=Pass, 0=Fail)"
+    target_col = "Pass_Fail"
     X = df.drop(columns=[target_col])
     y = df[target_col]
 
@@ -22,10 +37,10 @@ def preprocess_data():
         X, y, test_size=0.3, random_state=42
     )
 
-    numerical_cols = ["Age", "Hours of Sleep", "Hours Reviewing"]
+    numerical_cols = ["Age", "Sleep_Hours", "Review_Hours"]
     categorical_cols = [
-        "Course (STEM=1, Non-STEM=0)",
-        "In a Relationship (1=Yes, 0=No, 0.5=It's complicated)",
+        "Course",
+        "Relationship",
     ]
 
     #Drift
@@ -58,8 +73,8 @@ def preprocess_data():
     drifted_test = X_test_drifted.copy()
     drifted_test[target_col] = y_test.values
 
-    drifted_train.to_csv("data/silver/drifted_train.csv", index=False)
-    drifted_test.to_csv("data/silver/drifted_test.csv", index=False)
+    drifted_train.to_csv(PROJECT_ROOT / "data/silver/drifted_train.csv", index=False)
+    drifted_test.to_csv(PROJECT_ROOT / "data/silver/drifted_test.csv", index=False)
 
     return (X_train,
             X_test,

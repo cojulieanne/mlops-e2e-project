@@ -4,7 +4,7 @@ uv.lock
 *__pycache__/
 .env
 *mlartifacts/
-*/mlruns/
+*mlruns/
 *.log
 *.db
 *.egg-info/
