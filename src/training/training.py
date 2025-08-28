@@ -117,7 +117,7 @@ def training(train_x = "data/gold/X_train.csv", train_y = "data/gold/y_train.csv
         pickle.dump(best_pipeline, f)
 
 
-    mlflow.set_tracking_uri("http://localhost:5000")
+    mlflow.set_tracking_uri("http://mlflow:5000")
     with mlflow.start_run():
         if best_model_name == "RandomForestClassifier":
             mlflow.log_param("n_estimators", best_model.n_estimators if hasattr(best_model, "n_estimators") else None)
