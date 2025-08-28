@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/14ea5aff40ce46c3942be8bc1020f7d0/artifacts
+deleted_time: 1756376389859
+end_time: 1756372873229
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 14ea5aff40ce46c3942be8bc1020f7d0
+run_name: default_classifiers
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756372848902
+status: 3
+tags: []
+user_id: julie.co

@@ -1,7 +1,7 @@
 import mlflow
 from load_data import load_data
 from preprocessing import preprocess_data
-from training import training
+from training import training_mlflow
 from evaluation import evaluation
 from utils import logger
 from drift_detection import detect_drift
@@ -21,7 +21,7 @@ def main():
     logger.info("Preprocessing completed.")
 
     logger.info("Training Model...")
-    model = training.training(X_train, y_train)
+    model = training_mlflow.get_default_binary_models(X_train, y_train, X_test, y_test, cv = 5)
     logger.info("Model Training Completed.")
 
     logger.info("Evaluating Model...")

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/0/217e70dc104f4062a4893a0094a5d201/artifacts
+end_time: 1756372642675
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 217e70dc104f4062a4893a0094a5d201
+run_name: RandomUnderSampler_LogReg
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756372642473
+status: 3
+tags: []
+user_id: julie.co

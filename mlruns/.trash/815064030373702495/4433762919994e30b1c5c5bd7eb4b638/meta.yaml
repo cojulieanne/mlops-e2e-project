@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/815064030373702495/4433762919994e30b1c5c5bd7eb4b638/artifacts
+deleted_time: 1756368079704
+end_time: 1756294801853
+entry_point_name: ''
+experiment_id: '815064030373702495'
+lifecycle_stage: deleted
+run_id: 4433762919994e30b1c5c5bd7eb4b638
+run_name: overjoyed-hare-100
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756294801409
+status: 4
+tags: []
+user_id: Secondary Account

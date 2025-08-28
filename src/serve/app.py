@@ -17,24 +17,25 @@ import mlflow
 import mlflow.pyfunc
 from mlflow.tracking import MlflowClient
 
-
 import uvicorn
 # ------------------------------ Config ------------------------------
 MLFLOW_TRACKING_URI =  "http://localhost:5000"
+mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+client = MlflowClient()
 
-# Preferred: name + stage (e.g., champion @ Production)
-MODEL_NAME =  "BestClassifierModel"
-MODEL_VERSION = '3'
+MODEL_NAME =  "BestClassifierModel_RandomUnderSampler_RandomForest"
+mvs = client.search_model_versions(f"name='{MODEL_NAME}'")
+latest = max(mvs, key=lambda mv: int(mv.version))  # raises if none exist
+MODEL_VERSION = latest.version
 MODEL_URI = f"models:/{MODEL_NAME}/{MODEL_VERSION}"
+
+print(MODEL_URI)
 
 TOP_N_FEATURES = int(os.getenv("TOP_N_FEATURES", "5"))
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 
 logging.basicConfig(level=LOG_LEVEL)
 logger = logging.getLogger("serve")
-
-mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
-client = MlflowClient()
 
 app = FastAPI(
     title="Model Serving API",

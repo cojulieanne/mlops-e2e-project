@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/58e6de49d7c742b3a7ac90b9819edc6b/artifacts
+end_time: 1756379240812
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 58e6de49d7c742b3a7ac90b9819edc6b
+run_name: SMOTE_LightGBM
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756379240545
+status: 3
+tags: []
+user_id: julie.co

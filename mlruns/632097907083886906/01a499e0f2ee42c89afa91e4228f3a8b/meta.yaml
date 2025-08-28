@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/01a499e0f2ee42c89afa91e4228f3a8b/artifacts
+end_time: 1756378893389
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 01a499e0f2ee42c89afa91e4228f3a8b
+run_name: SMOTE_XGBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756378893149
+status: 3
+tags: []
+user_id: julie.co

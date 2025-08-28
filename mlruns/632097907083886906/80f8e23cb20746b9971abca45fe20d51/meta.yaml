@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/80f8e23cb20746b9971abca45fe20d51/artifacts
+end_time: 1756383120781
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 80f8e23cb20746b9971abca45fe20d51
+run_name: SMOTE_KNN
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756383120495
+status: 3
+tags: []
+user_id: julie.co

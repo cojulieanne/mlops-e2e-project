@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/90853bd54d824748ad3ad05d7c5e49ff/artifacts
+end_time: 1756380706029
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 90853bd54d824748ad3ad05d7c5e49ff
+run_name: SMOTE_GradBoost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756380705747
+status: 3
+tags: []
+user_id: julie.co

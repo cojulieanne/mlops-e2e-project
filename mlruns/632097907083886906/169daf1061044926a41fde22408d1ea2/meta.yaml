@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/169daf1061044926a41fde22408d1ea2/artifacts
+end_time: 1756383120105
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 169daf1061044926a41fde22408d1ea2
+run_name: RandomUnderSampler_KNN
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756383119860
+status: 3
+tags: []
+user_id: julie.co

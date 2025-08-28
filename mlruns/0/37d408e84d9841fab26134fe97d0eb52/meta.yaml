@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/0/37d408e84d9841fab26134fe97d0eb52/artifacts
+deleted_time: 1756350636655
 end_time: 1756295464780
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 37d408e84d9841fab26134fe97d0eb52
 run_name: gentle-gnu-799
 source_name: ''

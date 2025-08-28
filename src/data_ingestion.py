@@ -7,3 +7,9 @@ def load():
     output = "data/bronze/ml2_student_performance.csv"
 
     gdown.download(url, output, quiet=False)
+
+def main():
+    load()
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/fe89b966b5e446848becb1815e745cf5/artifacts
+end_time: 1756380698132
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: fe89b966b5e446848becb1815e745cf5
+run_name: SMOTE_NaiveBayes
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756380697924
+status: 3
+tags: []
+user_id: julie.co

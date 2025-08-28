@@ -140,7 +140,7 @@ def training(train_x, train_y):
         })
 
         mlflow.pyfunc.log_model(
-            artifact_path="custom_model",
+            name="custom_model",
             python_model=CustomMLModel(),
             artifacts={"model": "models/model.pkl"},
             registered_model_name="BestClassifierModel"   # 👈 registers here

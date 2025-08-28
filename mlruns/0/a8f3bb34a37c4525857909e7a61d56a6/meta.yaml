@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/0/a8f3bb34a37c4525857909e7a61d56a6/artifacts
+deleted_time: 1756350636652
 end_time: 1756318088507
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: a8f3bb34a37c4525857909e7a61d56a6
 run_name: unleashed-sow-859
 source_name: ''

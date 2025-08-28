@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/8a6d99cacca04297abf8aa10ce085656/artifacts
+deleted_time: 1756350636647
+end_time: 1756331945131
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+run_id: 8a6d99cacca04297abf8aa10ce085656
+run_name: enthused-fox-209
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756331945119
+status: 3
+tags: []
+user_id: julie.co

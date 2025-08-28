@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/4130cc3c6eb649338487b466400c1186/artifacts
+end_time: 1756378985478
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 4130cc3c6eb649338487b466400c1186
+run_name: default_classifiers
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756378959186
+status: 4
+tags: []
+user_id: julie.co

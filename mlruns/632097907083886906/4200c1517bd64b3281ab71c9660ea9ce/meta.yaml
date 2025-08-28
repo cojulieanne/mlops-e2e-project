@@ -1,0 +1,14 @@
+artifact_uri: mlflow-artifacts:/632097907083886906/4200c1517bd64b3281ab71c9660ea9ce/artifacts
+end_time: 1756383188442
+entry_point_name: ''
+experiment_id: '632097907083886906'
+lifecycle_stage: active
+run_id: 4200c1517bd64b3281ab71c9660ea9ce
+run_name: RandomUnderSampler_DecisionTreeClassifier
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1756383188233
+status: 3
+tags: []
+user_id: julie.co

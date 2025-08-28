@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/0/afd9e37768c34fadaafbdbb7e99c1cba/artifacts
+deleted_time: 1756350636654
 end_time: 1756295466247
 entry_point_name: ''
 experiment_id: '0'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: afd9e37768c34fadaafbdbb7e99c1cba
 run_name: valuable-loon-940
 source_name: ''
