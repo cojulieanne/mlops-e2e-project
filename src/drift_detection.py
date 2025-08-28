@@ -53,5 +53,5 @@ def detect_drift(reference_data_path: str, current_data_path: str) -> Dict[str, 
 if __name__ == "__main__":
     output = detect_drift(
         "data/silver/preprocessed_ml2_student_performance.csv",
-        "data/silver/drifted_test.csv",
+        "data/gold/drifted_test.csv",
     )
