@@ -42,6 +42,10 @@ def preprocess_data():
         "Course",
         "Relationship",
     ]
+    X_train.to_csv(PROJECT_ROOT / "data/gold/X_train.csv", index=False)
+    X_test.to_csv(PROJECT_ROOT / "data/gold/X_test.csv", index=False)
+    y_train.to_csv(PROJECT_ROOT / "data/gold/y_train.csv", index=False)
+    y_test.to_csv(PROJECT_ROOT / "data/gold/y_test.csv", index=False )
 
     #Drift
     def create_drifted_copy(X_data):
@@ -73,12 +77,13 @@ def preprocess_data():
     drifted_test = X_test_drifted.copy()
     drifted_test[target_col] = y_test.values
 
-    drifted_train.to_csv(PROJECT_ROOT / "data/silver/drifted_train.csv", index=False)
-    drifted_test.to_csv(PROJECT_ROOT / "data/silver/drifted_test.csv", index=False)
+    drifted_train.to_csv(PROJECT_ROOT / "data/gold/drifted_train.csv", index=False)
+    drifted_test.to_csv(PROJECT_ROOT / "data/gold/drifted_test.csv", index=False)
+    
 
-    return (X_train,
-            X_test,
-            y_train,
-            y_test,
-            X_train_drifted,
-            X_test_drifted)
+    # return (X_train,
+    #         X_test,
+    #         y_train,
+    #         y_test,
+    #         X_train_drifted,
+    #         X_test_drifted)

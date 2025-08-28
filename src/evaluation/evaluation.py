@@ -68,7 +68,7 @@ def evaluate_single_model(model, cv = None):
     X_test = pd.read_csv(PROJECT_ROOT/"data/gold/X_test.csv")
     y_test = pd.read_csv(PROJECT_ROOT/"data/gold/y_test.csv")
     if cv:
-        cv_results = cv_binary_metrics(model, X_train, y_train, cv)
+        cv_results = cv_binary_metrics(model, cv)
 
     else:
         cv_results = None
@@ -76,7 +76,7 @@ def evaluate_single_model(model, cv = None):
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
 
-    event_rate = y_test.sum()/len(y_test)
+    # event_rate = y_test.sum()/len(y_test)
     positive_rate = y_pred.sum()/len(y_pred)
 
     try:
@@ -92,7 +92,7 @@ def evaluate_single_model(model, cv = None):
         "roc_auc": round(roc_auc_score(y_test, y_proba), 4) if y_proba is not None else "N/A",
         "pr_auc": round(average_precision_score(y_test, y_proba), 4) if y_proba is not None else "N/A",
         "gmean_score": round(geometric_mean_score(y_test, y_pred), 4),
-        "event_rate": round(event_rate, 4),
+        # "event_rate": round(event_rate, 4),
         "positive_rate": round(positive_rate, 4)       
     }
 

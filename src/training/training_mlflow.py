@@ -14,8 +14,10 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
-from xgboost import XGBClassifier
-from lightgbm import LGBMClassifier
+# import xgboost
+# import lightgbm
+# from xgboost import XGBClassifier
+# from lightgbm import LGBMClassifier
 
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, roc_curve, confusion_matrix, ConfusionMatrixDisplay, auc, precision_recall_curve
@@ -33,7 +35,7 @@ from mlflow.tracking import MlflowClient
 from mlflow.models import infer_signature
 
 import joblib
-from hyperopt import fmin, tpe, hp, Trials, STATUS_OK
+# from hyperopt import fmin, tpe, hp, Trials, STATUS_OK
 
 from evaluation.evaluation import evaluate_single_model
 
@@ -44,7 +46,7 @@ warnings.filterwarnings("ignore")
 
 # ------------------------------ Config ------------------------------
 
-MLFLOW_TRACKING_URI =  "http://mlflow:5000"
+MLFLOW_TRACKING_URI =  "http://localhost:5000"
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 
@@ -106,8 +108,8 @@ def get_default_binary_models(cv = None):
         "RandomForest": RandomForestClassifier(random_state=143),
         "DecisionTreeClassifier": DecisionTreeClassifier(random_state=143),
         "GradBoost": GradientBoostingClassifier(random_state=143),
-        "XGBoost": XGBClassifier(use_label_encoder=False, eval_metric='logloss'),
-        "LightGBM": LGBMClassifier(verbose = -1)
+        # "XGBoost": XGBClassifier(use_label_encoder=False, eval_metric='logloss'),
+        # "LightGBM": LGBMClassifier(verbose = -1)
     }
 
     resamplers = {
@@ -145,7 +147,7 @@ def get_default_binary_models(cv = None):
 
 
                 try:
-                    model, metrics, cv_metrics = evaluate_single_model(pipeline, X_train, y_train, X_test, y_test, cv = cv)
+                    model, metrics, cv_metrics = evaluate_single_model(pipeline, cv = cv)
                     results[pipe_name] = metrics | cv_metrics
                     print(f"{pipe_name} → {metrics}")
                     print(f"CV → {cv_metrics}\n")
@@ -236,7 +238,7 @@ def get_default_binary_models(cv = None):
             else:
                 best_pipe = best_model
 
-            best_pipe, best_results, __ = evaluate_single_model(best_pipe, X_train, y_train, X_test, y_test)
+            best_pipe, best_results, __ = evaluate_single_model(best_pipe)
 
             print(best_results)
 
